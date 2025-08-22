@@ -29,7 +29,7 @@ code_to_title = pd.Series(uiu_courses.title.values,
 display_options = [f"{code} - {title}" for code,
                    title in code_to_title.items()]
 
-st.title("Exam Time Clash Checker")
+st.title("UIU Exam Time Clash Checker")
 
 # Mode selection
 modes = ["", "Check Clash By Day", "Check Clash By Time"]
