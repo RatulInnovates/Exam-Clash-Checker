@@ -34,7 +34,7 @@ def showDetails(course):
     time = {
         'T1': '9:00 AM - 11:00 AM',
         'T2': '11:30 AM - 1:30 PM',
-        'T3': '12:00 PM - 4:00 PM'
+        'T3': '2:00 PM - 4:00 PM'
     }
     dict = {course: [routine[course].iloc[0], time[routine[course].iloc[1]]]}
     st.write(pd.DataFrame(dict, index=["Day", "Time"]))
