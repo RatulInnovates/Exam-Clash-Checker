@@ -29,6 +29,17 @@ code_to_title = pd.Series(uiu_courses.title.values,
 display_options = [f"{code} - {title}" for code,
                    title in code_to_title.items()]
 
+
+def showDetails(course):
+    time = {
+        'T1': '9:00 AM - 11:00 AM',
+        'T2': '11:30 AM - 1:30 PM',
+        'T3': '12:00 PM - 4:00 PM'
+    }
+    dict = {course: [routine[course].iloc[0], time[routine[course].iloc[1]]]}
+    st.write(pd.DataFrame(dict, index=["Day", "Time"]))
+
+
 st.title("UIU Exam Time Clash Checker")
 
 # Mode selection
@@ -54,7 +65,8 @@ if mode:
                 st.write("Day Clash Found!!!")
                 for course, day in clash.items():
                     # st.write(f"{course} clashes on day {day}")
-                    st.write(routine[str(course)])
+                    # st.write(routine[str(course)])
+                    showDetails(course)
             else:
                 st.write("No Day Clash!")
         elif mode == "Check Clash By Time":
@@ -63,6 +75,7 @@ if mode:
                 st.write("Time Clash Found!!!")
                 for course, day in clash.items():
                     # st.write(f"{course} clashes on day {day}")
-                    st.write(routine[str(course)])
+                    # st.write(routine[str(course)])
+                    showDetails(course)
             else:
                 st.write("No Time Clash!")
