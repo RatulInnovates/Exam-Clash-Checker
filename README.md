@@ -1,6 +1,7 @@
 # Exam Time Clash Checker
 
 A Streamlit web app to check for exam schedule clashes by day and time for UIU courses.
+  🚀 **[Live Demo](https://uiu-exam-clash-checker.streamlit.app/)**
 
 ## Features
 
