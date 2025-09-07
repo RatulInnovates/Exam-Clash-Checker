@@ -1,7 +1,37 @@
 import pandas as pd
+from functools import cmp_to_key
+import streamlit as st
 
 
 routine = pd.read_csv('cleanedRoutine.csv')
+
+
+def showDetails(course):
+    time = {
+        'T1': '9:00 AM - 11:00 AM',
+        'T2': '11:30 AM - 1:30 PM',
+        'T3': '2:00 PM - 4:00 PM'
+    }
+    dict = {course: [routine[course].iloc[0], time[routine[course].iloc[1]]]}
+    st.write(pd.DataFrame(dict, index=["Day", "Time"]))
+
+
+def comparator(course1, course2):
+    return routine[course1].iloc[0] > routine[course2].iloc[0]
+
+
+def showRoutine(*courses):
+    """
+    Show routine of selected courses.
+    Sorted by date 
+    *When no clash exists*
+
+    """
+
+    st.badge("Routine:", color="green")
+    srted = sorted(courses, key=cmp_to_key(comparator))
+    for c in srted:
+        showDetails(c)
 
 
 def checkClashByDay(*courses):

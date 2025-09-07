@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from script import checkClashByDay, clashByTime, routine
+from script import checkClashByDay, clashByTime, routine, showRoutine, showDetails
 import logging
 logging.basicConfig(
     filename="app.log",
@@ -62,20 +62,22 @@ if mode:
         if mode == "Check Clash By Day":
             clash = checkClashByDay(*chosen_courses)
             if clash:
-                st.write("Day Clash Found!!!")
+                st.warning("Day Clash Found!!!")
                 for course, day in clash.items():
                     # st.write(f"{course} clashes on day {day}")
                     # st.write(routine[str(course)])
                     showDetails(course)
             else:
-                st.write("No Day Clash!")
+                st.success("No Day Clash!")
+                showRoutine(*chosen_courses)
         elif mode == "Check Clash By Time":
             clash = clashByTime(*chosen_courses)
             if clash:
-                st.write("Time Clash Found!!!")
+                st.warning("Time Clash Found!!!")
                 for course, day in clash.items():
                     # st.write(f"{course} clashes on day {day}")
                     # st.write(routine[str(course)])
                     showDetails(course)
             else:
-                st.write("No Time Clash!")
+                st.success("No Time Clash!")
+                showRoutine(*chosen_courses)
