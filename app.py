@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from script import checkClashByDay, clashByTime, routine, showRoutine, showDetails
+from script import checkClashByDay, clashByTime, routine, showRoutine
 import logging
 logging.basicConfig(
     filename="app.log",
